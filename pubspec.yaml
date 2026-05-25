@@ -14,7 +14,7 @@ dependencies:
   firebase_core: ^4.9.0
   firebase_auth: ^6.5.1
   cloud_firestore: ^6.4.1
-  firebase_storage: ^13.4.1
+  firebase_storage: ^12.3.6        # ✅ downgraded from 13.4.1
   google_mlkit_text_recognition: ^0.15.1
   google_mobile_ads: ^8.0.0
   in_app_purchase: ^3.2.3
