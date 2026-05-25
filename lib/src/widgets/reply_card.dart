@@ -51,7 +51,7 @@ class ReplyCard extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.share, color: Colors.white70),
                 onPressed: () {
-                  SharePlus.instance.share(text);
+                  SharePlus.instance.share(ShareParams(text: text)); // ✅ fixed
                   onShare();
                 },
               ),
