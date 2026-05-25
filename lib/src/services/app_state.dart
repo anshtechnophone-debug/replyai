@@ -90,17 +90,12 @@ class AppState extends ChangeNotifier {
   try {
     busy = true;
     notifyListeners();
-
-    // NEW: use GoogleSignIn.instance instead of GoogleSignIn(scopes:[...])
-    await GoogleSignIn.instance.initialize(scopes: ['email']);
-    final googleUser = await GoogleSignIn.instance.signIn();
-
+    final googleUser = await GoogleSignIn(scopes: ['email']).signIn();
     if (googleUser == null) {
       busy = false;
       notifyListeners();
       return;
     }
-
     final googleAuth = await googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
@@ -116,8 +111,7 @@ class AppState extends ChangeNotifier {
     busy = false;
     notifyListeners();
   }
-}
-
+  }
   Future<void> signOut() async {
     await _auth.signOut();
     signedIn = false;
