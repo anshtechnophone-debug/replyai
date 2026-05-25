@@ -87,31 +87,36 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> signInWithGoogle() async {
-    try {
-      busy = true;
-      notifyListeners();
-      final googleUser = await GoogleSignIn(scopes: ['email']).signIn();
-      if (googleUser == null) {
-        busy = false;
-        notifyListeners();
-        return;
-      }
-      final googleAuth = await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      final result = await _auth.signInWithCredential(credential);
-      if (result.user != null) {
-        await _loadRemoteProfile(result.user!.uid);
-      }
-    } catch (error) {
-      errorMessage = 'Google sign in failed.';
-    } finally {
+  try {
+    busy = true;
+    notifyListeners();
+
+    // NEW: use GoogleSignIn.instance instead of GoogleSignIn(scopes:[...])
+    await GoogleSignIn.instance.initialize(scopes: ['email']);
+    final googleUser = await GoogleSignIn.instance.signIn();
+
+    if (googleUser == null) {
       busy = false;
       notifyListeners();
+      return;
     }
+
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    final result = await _auth.signInWithCredential(credential);
+    if (result.user != null) {
+      await _loadRemoteProfile(result.user!.uid);
+    }
+  } catch (error) {
+    errorMessage = 'Google sign in failed.';
+  } finally {
+    busy = false;
+    notifyListeners();
   }
+}
 
   Future<void> signOut() async {
     await _auth.signOut();
