@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396369034947",
+    "project_id": "replyai-749f7",
+    "storage_bucket": "replyai-749f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396369034947:android:b7e97308368e44cc2aec76",
+        "android_client_info": {
+          "package_name": "com.replyai.replyai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396369034947-41ol9tvb11ki7thi01d6t64ind9lngqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv6G1RLyjzwaRlKoQC0arys7MkXUWCFuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396369034947-41ol9tvb11ki7thi01d6t64ind9lngqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
